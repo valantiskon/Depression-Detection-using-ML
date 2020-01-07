@@ -1,0 +1,67 @@
+Fold #: 1
+features chosen shape: (5641, 9)
+features before normalization: [[4 0 0 ... 1 0 0]
+ [1 0 1 ... 0 0 0]
+ [2 3 0 ... 0 0 0]
+ ...
+ [2 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]]
+features after normalization: [[0.07407407 0.         0.         ... 0.14285714 0.         0.        ]
+ [0.01851852 0.         0.00283286 ... 0.         0.         0.        ]
+ [0.03703704 0.13636364 0.         ... 0.         0.         0.        ]
+ ...
+ [0.03703704 0.         0.         ... 0.         0.         0.        ]
+ [0.         0.04545455 0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.5        0.        ]]
+encoded_tweets before tweets shape: (5641, 8408)
+before tweets extra_features shape: (5641, 9)
+before encoded_tweets: [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+final encoded_tweets shape: (5641, 8417)
+final encoded_tweets: [[0.         0.         0.         ... 0.14285714 0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ ...
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.5        0.        ]]
+Final encoded_tweets, after feature selection, shape: (5641, 8417)
+features chosen shape: (627, 9)
+features before normalization: [[1 0 0 ... 0 0 0]
+ [6 0 0 ... 0 0 0]
+ [2 0 0 ... 0 0 0]
+ ...
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]]
+features after normalization: [[0.01851852 0.         0.         ... 0.         0.         0.        ]
+ [0.11111111 0.         0.         ... 0.         0.         0.        ]
+ [0.03703704 0.         0.         ... 0.         0.         0.        ]
+ ...
+ [0.         0.04545455 0.         ... 0.         0.         0.        ]
+ [0.         0.         0.         ... 0.         0.         0.        ]
+ [0.         0.         0.00283286 ... 0.         0.         0.        ]]
+encoded_tweets before tweets shape: (627, 8408)
+before tweets extra_features shape: (627, 9)
+before encoded_tweets: [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+final encoded_tweets shape: (627, 8417)
+final encoded_tweets: [[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+Final encoded_tweets, after feature selection, shape: (627, 8417)
