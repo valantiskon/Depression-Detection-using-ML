@@ -93,10 +93,10 @@ print('DONE FILE 8')
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 11, 3, dir + '\\SVM\\Feature Improtance + Bigrams.txt')
 print('DONE FILE 9')
 '''
-
+'''
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 9, 1, dir + '\\SVM\\PCA + TF-IDF.txt')
 print('DONE FILE 10')
-
+'''
 '''
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 9, 2, dir + '\\SVM\\PCA + One-Hot.txt')
 print('DONE FILE 11')
@@ -106,10 +106,12 @@ print('DONE FILE 12')
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\SVM\\word2vec.txt')
 print('DONE FILE 13')
+'''
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\SVM\\GloVe.txt')
 print('DONE FILE 14')
 
+'''
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\SVM\\doc2vec.txt')
 print('DONE FILE 15')
 '''
@@ -218,7 +220,9 @@ print('DONE FILE 21')
 '''
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\LSTM\\word2vec.txt')
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\LSTM\\doc2vec.txt')
+
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\LSTM\\GloVe.txt')
+
 '''
 
 
@@ -232,7 +236,9 @@ LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6
 '''
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\Conv1D\\word2vec.txt')
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\Conv1D\\doc2vec.txt')
+
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\Conv1D\\GloVe.txt')
+
 '''
 
 ##############################################################################################################################################################

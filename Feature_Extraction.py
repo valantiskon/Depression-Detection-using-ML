@@ -171,3 +171,45 @@ class TwitterData_ExtraFeatures:
         print("Total count of emoticons from all tweets: ", count)
         print("Average count of emoticons per tweet: ", count / len(emots))
         print("extra features shape: ", np.array(self.processed_data).shape)
+
+        # 10 percentange of pronouns
+        personal_pronouns = {"I", "me", "my", "mine", "myself"}
+
+        rest_pronouns = {"you", "he", "she", "it", "we", "they", "her", "him", "us", "them", "our", "your", "his",
+                         "its", "their", "ours", "yours", "hers", "theirs", "himself", "herself", "themselves",
+                         "itself", "yourself", "yourselves", "ourselves"}
+
+        pronoun_percentage = []
+        # calculate stats for total count of personal and rest pronouns
+        personal = 0
+        rest = 0
+        for tweets in tokenized_text:
+            count_rest = 0
+            count_personal = 0
+            for x_rest in rest_pronouns:
+                count_rest = tweets.count(x_rest)
+            for x_personal in personal_pronouns:
+                count_personal = tweets.count(x_personal)
+            rest += count_rest
+            personal += count_personal
+            if count_rest:
+                pronoun_percentage.append(count_personal / count_rest)
+            elif count_personal: # If there are no rest pronouns in this tweet but personal pronouns exist
+                pronoun_percentage.append(1)
+            else: # If there are no pronouns in this tweet
+                pronoun_percentage.append(0)
+        self.processed_data.append(pronoun_percentage)
+
+        count = 0
+        for numb in pronoun_percentage:
+            count += numb
+        print("Total count of PERSONAL PRONOUNS from all tweets: ", personal,
+              "\nTotal count of REST PRONOUNS from all tweets: ", rest)
+        print("Average count of PERSONAL PRONOUNS from all tweets: ", personal / len(pronoun_percentage),
+              "\nAverage count of REST PRONOUNS from all tweets: ", rest / len(pronoun_percentage))
+        print("Average percentage of PERSONAL/REST PRONOUNS per tweet: ", count / len(pronoun_percentage))
+
+
+
+
+        # 11 percentange of pronouns

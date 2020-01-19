@@ -100,7 +100,7 @@ def combine_datasets():
     dir = os.getcwd()  # Gets the current working directory
 
     #train_file_A = dir + '\\dataset\\train\\depression_tweets.txt'
-    train_file_A = dir + '\\dataset\\train\\depress\\ALL_tweets_final.csv'
+    train_file_A = dir + '\\dataset\\train\\TEMP_ALL_SPLIT_tweets_final.csv'
 
 
     train_A = pd.read_csv(train_file_A)
@@ -114,11 +114,15 @@ def combine_datasets():
     train_A.drop(['hashtags'], axis=1, inplace=True)
     train_A.drop(['tweet_original'], axis=1, inplace=True)
 
+    # Convert label from float to int
+    import numpy as np
+    train_A['label'] = np.where(train_A['label'] == 0.0, 0, 1)
+
     print(train_A)
     print(train_A.shape)
 
     #train_file_B = dir + '\\dataset\\train\\tweets_combined.csv'
-    train_file_B = dir + '\\dataset\\train\\general_tweets.csv'
+    train_file_B = dir + '\\dataset\\train\\tweets_combined.csv'
 
 
     train_B = pd.read_csv(train_file_B)
@@ -136,12 +140,12 @@ def combine_datasets():
     print(df_final)
     print(df_final.shape)
 
-    df_final.to_csv(dir + '\\dataset\\train\\TEST_SCRAPED_TWEETS_general_tweets.csv')
+    df_final.to_csv(dir + '\\dataset\\train\\ALL_SPLIT_tweets_final.csv')
 
     print("END SCRIPT")
 
 
 
-Combine_Scraped_and_Positive_tweets()
+#Combine_Scraped_and_Positive_tweets()
 #balance_dataset()
-#combine_datasets()
+combine_datasets()

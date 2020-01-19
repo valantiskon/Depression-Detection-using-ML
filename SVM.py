@@ -2,7 +2,7 @@ import Twitter_Depression_Detection # Reads the input and the training sets
 import numpy as np
 from sklearn.model_selection import KFold
 from sklearn import svm
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
@@ -73,7 +73,6 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
         count += 1
         print('Fold #: ', count)
 
-        print(x[test_index], y[test_index])
 
         with open(print_file, "a") as myfile: # Write above print into output file
             myfile.write('Fold #: ' + str(count) + '\n')
@@ -91,9 +90,10 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
 
 #######################################################################################################################
         # Feature Scaling
-        #sc = StandardScaler()
-        #x_train = sc.fit_transform(x_train)
-        #x_test = sc.transform(x_test)
+        minMaxScaler = MinMaxScaler(feature_range=(0, 1))
+        # Get points and discard classification labels
+        x_train = minMaxScaler.fit_transform(x_train)
+        x_test = minMaxScaler.transform(x_test)
 #######################################################################################################################
 
         model.fit(x_train, y_train)
