@@ -1,8 +1,6 @@
 import Twitter_Depression_Detection # Reads the input and the training sets
 import SVM # Implements SVM classification
-'''
 import NaiveBayes # Implements Naive Bayes Classification
-'''
 import KNeighbors # Implements KNeighbors classification
 import VotingEnsembles # Implements VotingEnsembles classification
 import LSTM # Implements  LSTM classification
@@ -64,7 +62,7 @@ print('DONE FILE 10')
 
 ##############################################################################################################################################################
 
-'''
+
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\SVM\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
@@ -92,12 +90,10 @@ print('DONE FILE 8')
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 11, 3, dir + '\\SVM\\Feature Improtance + Bigrams.txt')
 print('DONE FILE 9')
-'''
-'''
+
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 9, 1, dir + '\\SVM\\PCA + TF-IDF.txt')
 print('DONE FILE 10')
-'''
-'''
+
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 9, 2, dir + '\\SVM\\PCA + One-Hot.txt')
 print('DONE FILE 11')
 
@@ -106,20 +102,18 @@ print('DONE FILE 12')
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\SVM\\word2vec.txt')
 print('DONE FILE 13')
-'''
+
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\SVM\\GloVe.txt')
 print('DONE FILE 14')
 
-'''
+
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\SVM\\doc2vec.txt')
 print('DONE FILE 15')
-'''
-'''
+
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 1, dir + '\\SVM\\TF-IDF.txt')
 print('DONE FILE 16')
-'''
-'''
+
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 2, dir + '\\SVM\\One-Hot.txt')
 print('DONE FILE 17')
 
@@ -135,7 +129,7 @@ print('DONE FILE 20')
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\SVM\\RFE + Bigrams.txt')
 print('DONE FILE 21')
 
-'''
+
 
 ##############################################################################################################################################################
 
@@ -143,7 +137,7 @@ print('DONE FILE 21')
 
 ##############################################################################################################################################################
 
-'''
+
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\Bayes\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
 
@@ -207,7 +201,7 @@ print('DONE FILE 20')
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\Bayes\\RFE + Bigrams.txt')
 print('DONE FILE 21')
 
-'''
+
 
 
 
@@ -217,13 +211,13 @@ print('DONE FILE 21')
 
 ##############################################################################################################################################################
 
-'''
+
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\LSTM\\word2vec.txt')
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\LSTM\\doc2vec.txt')
 
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\LSTM\\GloVe.txt')
 
-'''
+
 
 
 
@@ -233,13 +227,13 @@ LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6
 
 ##############################################################################################################################################################
 
-'''
+
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\Conv1D\\word2vec.txt')
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\Conv1D\\doc2vec.txt')
 
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\Conv1D\\GloVe.txt')
 
-'''
+
 
 ##############################################################################################################################################################
 
@@ -247,7 +241,7 @@ Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_feat
 
 ##############################################################################################################################################################
 
-'''
+
 KNeighbors.K_Neighbors(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\KNeighbors\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
 
@@ -311,7 +305,7 @@ print('DONE FILE 20')
 KNeighbors.K_Neighbors(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\KNeighbors\\RFE + Bigrams.txt')
 print('DONE FILE 21')
 
-'''
+
 
 
 ##############################################################################################################################################################
@@ -320,7 +314,7 @@ print('DONE FILE 21')
 
 ##############################################################################################################################################################
 
-'''
+
 VotingEnsembles.Voting_Ensembles(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\VotingEnsembles\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
 
@@ -384,4 +378,3 @@ print('DONE FILE 20')
 VotingEnsembles.Voting_Ensembles(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\VotingEnsembles\\RFE + Bigrams.txt')
 print('DONE FILE 21')
 
-'''

@@ -8,6 +8,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Import packages to visualize the ROC-AUC Curve
 import matplotlib.pyplot as plt
@@ -87,7 +88,7 @@ def Voting_Ensembles(train_A, words_of_tweets, extra_features, feature_selection
         class2 = svm.SVC(kernel='rbf', C=1000, gamma=0.1)
         class3 = svm.SVC(kernel='rbf', C=100, gamma=0.1)
         class4 = svm.SVC(kernel='rbf', C=10, gamma=0.1)
-        class5 = KNeighborsClassifier(n_neighbors=140)
+        class5 = KNeighborsClassifier(n_neighbors=40)
         class6 = BernoulliNB()
 
         model = VotingClassifier(
@@ -95,6 +96,10 @@ def Voting_Ensembles(train_A, words_of_tweets, extra_features, feature_selection
                         ('bern', class6)], voting='hard')
 
 #######################################################################################################################
+        # 'minority': resample only the minority class;
+        oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+        x_train, y_train = oversample.fit_resample(x_train, y_train)
+
 
         model.fit(x_train, y_train)
         y_pred = model.predict(x_test)

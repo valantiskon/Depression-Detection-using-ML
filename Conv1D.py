@@ -5,6 +5,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Importing the Keras libraries and packages
 from keras.models import Sequential
@@ -109,6 +110,11 @@ def conv1d_class(train_A, words_of_tweets, extra_features, feature_selection, en
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=2, verbose=0, mode='auto')
+
+        # 'minority': resample only the minority class;
+        oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+        x_train, y_train = oversample.fit_resample(x_train, y_train)
+
 
         # Fitting our model
         classifier.fit(x_train, y_train, batch_size=20, epochs=50)

@@ -205,9 +205,9 @@ class Reader:
 
 #        print('Average number of words per sentence: ', np.mean([len(s.split(" ")) for s in self.train_A.tweet]))
 
-        for i in range(0, len(self.train_A)):
+        for sentence in self.train_A['tweet']:
             # substitute contractions with full words
-            words = self.replace_contractions(self.train_A.iloc[i][0])
+            words = self.replace_contractions(sentence)
 
             # Tokenize tweets
             words = word_tokenize(words)
@@ -775,9 +775,7 @@ class Reader:
 
     def readTrain(self):
         # Read the training file
-        #train_file_A = self.dir + '\\dataset\\train\\tweets_combined.csv'
-#        train_file_A = self.dir + '\\dataset\\train\\ALL_SPLIT_tweets_final.csv'
-        train_file_A = self.dir + '\\dataset\\train\\TEST_balanced_general_tweets.csv'
+        train_file_A = self.dir + '\\dataset\\train\\imbalanced_training.csv'
 
         self.train_A = pd.read_csv(train_file_A)
         # Drop the first column of reading file
@@ -810,6 +808,6 @@ class Reader:
             (count_1 / counter_all) * 100) + '\n ----------------------------------------')
 
         # Plot the imbalance with two bars indicating each label
-        color = ['blue', 'orange']
-        self.train_A['label'].value_counts().plot(kind='bar', title='Count (label)', color=color)
-        plt.show()
+#        color = ['blue', 'orange']
+#        self.train_A['label'].value_counts().plot(kind='bar', title='Count (label)', color=color)
+#        plt.show()

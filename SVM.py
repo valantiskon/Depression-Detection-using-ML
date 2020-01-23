@@ -44,6 +44,7 @@ def compute_ROC_Curve(tprs, mean_fpr, aucs):
 
 
 
+# Visualize the dataset siplified to 2 dimension (with dimension reduction)
 def visualize_data(X, y, label):
     from sklearn.decomposition import PCA
 
@@ -62,6 +63,8 @@ def visualize_data(X, y, label):
     plt.title(label)
     plt.legend(loc='upper right')
     plt.show()
+
+
 
 def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encoding, print_file):
     reading = Twitter_Depression_Detection.Reader()  # Import the Twitter_Depression_Detection.py file, to get the encoding
@@ -114,19 +117,19 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
         x_train = minMaxScaler.fit_transform(x_train)
         x_test = minMaxScaler.transform(x_test)
 #######################################################################################################################
-
-        model.fit(x_train, y_train)
-
-#######################################################################################################################
         # Visualization of normal and oversampled data
 
-        visualize_data(x_train, y_train, "Normal Dataset")
+      #  visualize_data(x_train, y_train, "Normal Dataset")
 
         # 'minority': resample only the minority class;
         oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
         x_train, y_train = oversample.fit_resample(x_train, y_train)
 
-        visualize_data(x_train, y_train, "Oversampled Dataset")
+    #    visualize_data(x_train, y_train, "Oversampled Dataset")
+
+#######################################################################################################################
+
+        model.fit(x_train, y_train)
 
 #######################################################################################################################
 
@@ -197,7 +200,7 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
     # Plot HEATMAP
 
 # =============================================================================
-
+        '''
         plt.title('SVM - Confusion Matrix '
                   '\n[Accuracy = %0.2f, Recall = %0.2f, Precision = %0.2f, F1-Score = %0.2f] '
                   '\nTrue Positive = %d, False Positive = %d '
@@ -221,7 +224,7 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
         plt.xlabel('True output')
         plt.ylabel('Predicted output')
         plt.show()
-
+        '''
 # =============================================================================
 
 

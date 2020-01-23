@@ -7,6 +7,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Import libraries to compute ROC-AUC Curve
 import matplotlib.pyplot as plt
@@ -107,7 +108,12 @@ def K_Neighbors(train_A, words_of_tweets, extra_features, feature_selection, enc
         x_test = scaler.transform(x_test)
 
 
-        classifier = KNeighborsClassifier(n_neighbors=140)
+        classifier = KNeighborsClassifier(n_neighbors=40)
+
+        # 'minority': resample only the minority class;
+        oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+        x_train, y_train = oversample.fit_resample(x_train, y_train)
+
         classifier.fit(x_train, y_train)
         y_pred = classifier.predict(x_test)
 

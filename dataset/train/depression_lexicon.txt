@@ -1,4 +1,5 @@
 anxiety
+suicide
 suicidal
 severe
 adhd
@@ -7,7 +8,6 @@ alivenes
 tiredness
 withdrawal
 insomnia
-suicidal
 sleepiness
 sleepless
 appetite
@@ -39,23 +39,42 @@ vulnerable
 unfriendly
 unhappy
 weak
+worried
 unfeeling
 outbreak
 tender
 unbearable
 traumatic
+trauma
 restless
 medication
 side‐effects
+stress
 doctor
 doses
+alone
+delusion
+insecure
 effective
 weariness
+tired
 prescribed
 therapy
 stimulant
+unpleasant
 antidepressant
+rage
 patients
+upset
+stressed
+pain
+feel down
+feeling down
+felt down
+sad
+sadness
+pressure
+anger
 neurotransmitters
 prescriptions
 psychotherapy
@@ -68,5 +87,7 @@ hospitalization
 sedative
 150mg
 40mg
+hopeless
 drugs
 hell
+lonely
