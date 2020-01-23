@@ -28,6 +28,9 @@ from sklearn.preprocessing import scale
 from sklearn import utils
 import re
 
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import WordPunctTokenizer
+
 import nltk
 nltk.download('stopwords')
 
@@ -772,14 +775,9 @@ class Reader:
 
     def readTrain(self):
         # Read the training file
-
-  ##      train_file_A = self.dir + '\\dataset\\train\\general_tweets.csv'
-  ##        train_file_A = self.dir + '\\dataset\\train\\balanced_general_tweets.csv'
-  ##      train_file_A = self.dir + '\\dataset\\train\\POSITIVE_DEPRESSED_SCRAPED.csv'
-
-
         #train_file_A = self.dir + '\\dataset\\train\\tweets_combined.csv'
-        train_file_A = self.dir + '\\dataset\\train\\ALL_SPLIT_tweets_final.csv'
+#        train_file_A = self.dir + '\\dataset\\train\\ALL_SPLIT_tweets_final.csv'
+        train_file_A = self.dir + '\\dataset\\train\\TEST_balanced_general_tweets.csv'
 
         self.train_A = pd.read_csv(train_file_A)
         # Drop the first column of reading file
@@ -810,3 +808,8 @@ class Reader:
         print('File A without emojis -> Percentage of tweets classified as 0: ' + str((count_0 / counter_all) * 100))
         print('File A without emojis -> Percentage of tweets classified as 1: ' + str(
             (count_1 / counter_all) * 100) + '\n ----------------------------------------')
+
+        # Plot the imbalance with two bars indicating each label
+        color = ['blue', 'orange']
+        self.train_A['label'].value_counts().plot(kind='bar', title='Count (label)', color=color)
+        plt.show()

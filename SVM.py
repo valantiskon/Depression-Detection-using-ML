@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+import seaborn as sns
+from imblearn.over_sampling import SMOTE
 
 # Import packages to visualize the ROC-AUC Curve
 import matplotlib.pyplot as plt
@@ -42,7 +44,24 @@ def compute_ROC_Curve(tprs, mean_fpr, aucs):
 
 
 
+def visualize_data(X, y, label):
+    from sklearn.decomposition import PCA
 
+    pca = PCA(n_components=2)
+    X = pca.fit_transform(X)
+
+    colors = ['#1F77B4', '#FF7F0E']
+    markers = ['o', 's']
+    for l, c, m in zip(np.unique(y), colors, markers):
+        plt.scatter(
+            X[y == l, 0],
+            X[y == l, 1],
+            c=c, label=l, marker=m
+        )
+
+    plt.title(label)
+    plt.legend(loc='upper right')
+    plt.show()
 
 def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encoding, print_file):
     reading = Twitter_Depression_Detection.Reader()  # Import the Twitter_Depression_Detection.py file, to get the encoding
@@ -98,6 +117,18 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
 
         model.fit(x_train, y_train)
 
+#######################################################################################################################
+        # Visualization of normal and oversampled data
+
+        visualize_data(x_train, y_train, "Normal Dataset")
+
+        # 'minority': resample only the minority class;
+        oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+        x_train, y_train = oversample.fit_resample(x_train, y_train)
+
+        visualize_data(x_train, y_train, "Oversampled Dataset")
+
+#######################################################################################################################
 
         model.score(x_train, y_train)
         # Predict Output
@@ -141,6 +172,7 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
         cm = confusion_matrix(y_test, y_pred)
         print(cm)
 
+
         with open(print_file, "a") as myfile: # Write above print into output file
             myfile.write(str(cm) + '\n')
 
@@ -160,6 +192,37 @@ def svm_func(train_A, words_of_tweets, extra_features, feature_selection, encodi
         print("F1 score: ", temp_f1_score)
 
 
+# =============================================================================
+
+    # Plot HEATMAP
+
+# =============================================================================
+
+        plt.title('SVM - Confusion Matrix '
+                  '\n[Accuracy = %0.2f, Recall = %0.2f, Precision = %0.2f, F1-Score = %0.2f] '
+                  '\nTrue Positive = %d, False Positive = %d '
+                  '\nFalse Negative = %d, True Negative = %d]' % (
+            temp_accuracy * 100, temp_recall * 100, temp_precision * 100, temp_f1_score * 100, cm[0][0], cm[0][1], cm[1][0], cm[1][1]))
+
+        sns.heatmap(cm, cmap='Oranges',  # Color of heatmap
+                    annot=True, fmt="d",
+                    # Enables values inside the heatmap boxes and sets that are integer values with fmt="d"
+                    cbar=False,  # Delete the heat bar (shows the numbers corresponding to colors)
+                    xticklabels=["depression", "no depression"], yticklabels=["depression", "no depression"]
+                    # Name the x and y value labels
+                    ).tick_params(left=False, bottom=False)  # Used to delete dash from name values of axis x and y
+
+        # Fix a bug where heatmap top and bottom boxes are cut off
+        b, t = plt.ylim()  # discover the values for bottom and top
+        b += 0.5  # Add 0.5 to the bottom
+        t -= 0.5  # Subtract 0.5 from the top
+        plt.ylim(b, t)  # update the ylim(bottom, top) values
+
+        plt.xlabel('True output')
+        plt.ylabel('Predicted output')
+        plt.show()
+
+# =============================================================================
 
 
     # Create ROC-AUC curve

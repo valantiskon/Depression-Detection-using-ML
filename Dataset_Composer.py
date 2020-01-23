@@ -7,7 +7,7 @@ import os.path
 def balance_dataset():
     dir = os.getcwd()  # Gets the current working directory
 
-    train_file_A = dir + '\\dataset\\train\\TEST_balanced_general_tweets.csv'
+    train_file_A = dir + '\\dataset\\train\\ALL_SPLIT_tweets_final.csv'
 
     train_A = pd.read_csv(train_file_A)
     # Drop the first column of reading file
@@ -147,5 +147,5 @@ def combine_datasets():
 
 
 #Combine_Scraped_and_Positive_tweets()
-#balance_dataset()
-combine_datasets()
+balance_dataset()
+#combine_datasets()
