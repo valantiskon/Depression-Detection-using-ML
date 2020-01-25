@@ -717,8 +717,8 @@ class Reader:
 
         # Read the training file for task A with emojis
 
-        train_file_A = self.dir + '\\dataset\\train\\TEST_balanced_general_tweets.csv'
-        test_file_A = self.dir + '\\dataset\\gold_test\\SemEval2018-T3_gold_test_taskA_emoji.txt'
+        train_file_A = self.dir + '\\dataset\\train\\imbalancd_training.csv'
+        test_file_A = self.dir + '\\dataset\\gold_test\\ground_truth.txt'
 
 
         self.train_A = pd.read_csv(train_file_A)

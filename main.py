@@ -63,7 +63,7 @@ print('DONE FILE 10')
 ##############################################################################################################################################################
 
 
-
+'''
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\SVM\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
 
@@ -119,15 +119,22 @@ print('DONE FILE 17')
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 3, dir + '\\SVM\\Bigrams.txt')
 print('DONE FILE 18')
+'''
 
+
+'''
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 1, dir + '\\SVM\\RFE + TF-IDF.txt')
 print('DONE FILE 19')
+'''
+
+'''
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 2, dir + '\\SVM\\RFE + One-Hot.txt')
 print('DONE FILE 20')
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\SVM\\RFE + Bigrams.txt')
 print('DONE FILE 21')
+'''
 
 
 
@@ -137,7 +144,7 @@ print('DONE FILE 21')
 
 ##############################################################################################################################################################
 
-
+'''
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\Bayes\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
 
@@ -191,6 +198,9 @@ print('DONE FILE 17')
 
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 3, dir + '\\Bayes\\Bigrams.txt')
 print('DONE FILE 18')
+'''
+
+'''
 
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 1, dir + '\\Bayes\\RFE + TF-IDF.txt')
 print('DONE FILE 19')
@@ -200,6 +210,7 @@ print('DONE FILE 20')
 
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\Bayes\\RFE + Bigrams.txt')
 print('DONE FILE 21')
+'''
 
 
 
@@ -211,13 +222,13 @@ print('DONE FILE 21')
 
 ##############################################################################################################################################################
 
-
+'''
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\LSTM\\word2vec.txt')
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\LSTM\\doc2vec.txt')
 
 LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\LSTM\\GloVe.txt')
 
-
+'''
 
 
 
@@ -227,12 +238,12 @@ LSTM.lstm(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6
 
 ##############################################################################################################################################################
 
-
+'''
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 4, dir + '\\Conv1D\\word2vec.txt')
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\Conv1D\\doc2vec.txt')
 
 Conv1D.conv1d_class(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\Conv1D\\GloVe.txt')
-
+'''
 
 
 ##############################################################################################################################################################
@@ -295,6 +306,7 @@ print('DONE FILE 17')
 
 KNeighbors.K_Neighbors(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 3, dir + '\\KNeighbors\\Bigrams.txt')
 print('DONE FILE 18')
+'''
 
 KNeighbors.K_Neighbors(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 1, dir + '\\KNeighbors\\RFE + TF-IDF.txt')
 print('DONE FILE 19')
@@ -305,6 +317,7 @@ print('DONE FILE 20')
 KNeighbors.K_Neighbors(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\KNeighbors\\RFE + Bigrams.txt')
 print('DONE FILE 21')
 
+'''
 
 
 
@@ -368,6 +381,7 @@ print('DONE FILE 17')
 
 VotingEnsembles.Voting_Ensembles(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 3, dir + '\\VotingEnsembles\\Bigrams.txt')
 print('DONE FILE 18')
+'''
 
 VotingEnsembles.Voting_Ensembles(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 1, dir + '\\VotingEnsembles\\RFE + TF-IDF.txt')
 print('DONE FILE 19')
@@ -377,4 +391,5 @@ print('DONE FILE 20')
 
 VotingEnsembles.Voting_Ensembles(reading.train_A, reading.words_of_tweets, reading.extra_features, 8, 3, dir + '\\VotingEnsembles\\RFE + Bigrams.txt')
 print('DONE FILE 21')
+'''
 

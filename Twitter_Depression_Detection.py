@@ -40,6 +40,8 @@ nltk.download('stopwords')
 class Reader:
     dir = os.getcwd()  # Gets the current working directory
 
+    train_A = None # dataframe of the dataset
+
     words_of_tweets = []  # Saves all the tweet cleared from stop-words, stemmed and tokenized
 
     called_once = False  # Indicates if the GloVe model has been trained (read) or not
@@ -92,17 +94,6 @@ class Reader:
     sfm = RandomForestClassifier()
     models = SelectFromModel(sfm)
 
-    train_A = None
-    train_A_emoji = None
-    train_A_emoji_hash = None
-    train_B = None
-    train_B_emoji = None
-    train_B_emoji_hash = None
-
-    input_A = None
-    input_A_emoji = None
-    input_B = None
-    input_B_emoji = None
 
     ##############################################################################################################################################################
 

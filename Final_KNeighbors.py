@@ -4,6 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Import packages to visualize the Learning Curve
 import matplotlib.pyplot as plt
@@ -111,8 +112,10 @@ def K_Neighbors(train_A, train_words_of_tweets, train_extra_features, test_words
     # This indexs your train and test data for your cross validation and sorts them in random order, since we used shuffle equals True
     x_train, x_test = reading.get_enc(x_train, 1, y_train, train_extra_features), reading.get_enc(x_test, 0, y_test, test_extra_features)
 
-
-
+#######################################################################################################################
+    # 'minority': resample only the minority class;
+    oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+    x_train, y_train = oversample.fit_resample(x_train, y_train)
 #######################################################################################################################
 
     classifier = KNeighborsClassifier(n_neighbors=140)

@@ -4,6 +4,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Import packages to visualize the Learning Curve
 import matplotlib.pyplot as plt
@@ -113,8 +114,11 @@ def Bayes(train_A, train_words_of_tweets, train_extra_features, test_words_of_tw
 
 
 #######################################################################################################################
-
+    # 'minority': resample only the minority class;
+    oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+    x_train, y_train = oversample.fit_resample(x_train, y_train)
     model = GaussianNB()
+#######################################################################################################################
 
     # Fit Gaussian Naive Bayes according to x, y
     # Make a prediction using the Naive Bayes Model

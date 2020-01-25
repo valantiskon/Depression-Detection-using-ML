@@ -105,7 +105,11 @@ def lstm(train_A, words_of_tweets, extra_features, feature_selection, encoding, 
 
         # Initializing Neural Network
         classifier = Sequential()
-
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        # 'minority': resample only the minority class;
+        oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+        x_train, y_train = oversample.fit_resample(x_train, y_train)
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         print(x_train.shape[0], ' ', x_train.shape[1])
         print(x_test.shape[0], ' ', x_test.shape[1])
         x_train = x_train.reshape(x_train.shape[0], 1, x_train.shape[1])
@@ -132,10 +136,6 @@ def lstm(train_A, words_of_tweets, extra_features, feature_selection, encoding, 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=2, verbose=0, mode='auto')
-
-        # 'minority': resample only the minority class;
-        oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
-        x_train, y_train = oversample.fit_resample(x_train, y_train)
 
         # Fitting our model
         classifier.fit(x_train, y_train, batch_size=20, epochs=50)

@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
+from imblearn.over_sampling import SMOTE
 
 # Importing the Keras libraries and packages
 from keras.models import Sequential
@@ -30,6 +31,11 @@ def lstm(train_A, train_words_of_tweets, train_extra_features, test_words_of_twe
     # Initializing Neural Network
     classifier = Sequential()
 
+#######################################################################################################################
+    # 'minority': resample only the minority class;
+    oversample = SMOTE(sampling_strategy='minority', k_neighbors=10, random_state=0)
+    x_train, y_train = oversample.fit_resample(x_train, y_train)
+#######################################################################################################################
 
     print(x_train.shape[0], ' ', x_train.shape[1])
     print(x_test.shape[0], ' ', x_test.shape[1])

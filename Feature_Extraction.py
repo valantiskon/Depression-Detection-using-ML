@@ -19,19 +19,6 @@ class TwitterData_ExtraFeatures:
         pass
 
     def build_features(self, train_A):
-
-        # Used to count the number of quotes in a tweet
-        def count_occurences(character, word_array):
-            counter = 0
-            for j, word in enumerate(word_array):
-                for char in word:
-                    if char in character:
-                        counter += 1
-            if counter % 2 != 0: # Used for estimation in case we have count that is not divided by two exactly. In that case we subtrack 1 from counter to estimate the number of queotes
-                counter -= 1
-            return counter
-
-
         self.processed_data = []
 
         raw_text = [] # UNPROCESSED TEXT OF TWEETS
