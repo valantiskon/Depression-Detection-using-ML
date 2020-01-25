@@ -1,11 +1,23 @@
+print('imp1')
 import Twitter_Depression_Detection # Reads the input and the training sets
+from Twitter_Depression_Detection import Reader
+print('imp2')
 import SVM # Implements SVM classification
+print('imp2.1')
+import nltk
+nltk.download('punkt')
+'''
 import NaiveBayes # Implements Naive Bayes Classification
+'''
+print('imp3')
 import KNeighbors # Implements KNeighbors classification
+print('imp4')
 import VotingEnsembles # Implements VotingEnsembles classification
-import LSTM # Implements  LSTM classification
-import Conv1D # Implements Conv1D classification
-
+print('imp5')
+#import LSTM # Implements  LSTM classification
+print('imp6')
+#import Conv1D # Implements Conv1D classification
+print('imp7')
 import os.path
 
 
@@ -17,8 +29,9 @@ import os.path
 ##############################################################################################################################################################
 ##############################################################################################################################################################
 
-
-reading = Twitter_Depression_Detection.Reader() # Import the Twitter_Depression_Detection.py file, that reads the input and the training sets
+print('start')
+reading = Reader() # Import the Twitter_Depression_Detection.py file, that reads the input and the training sets # Import the Twitter_Depression_Detection.py file, that reads the input and the training sets
+print('set cwd')
 dir = os.getcwd() # Gets the current working directory
 
 
@@ -28,9 +41,11 @@ dir = os.getcwd() # Gets the current working directory
 
 ##############################################################################################################################################################
 
-
+print("Read train")
+#reading.switch()
 reading.readTrain()
-reading.checkImbalance()
+print('check for imbalance')
+#reading.checkImbalance()
 
 
 ##############################################################################################################################################################
@@ -50,6 +65,17 @@ reading.checkImbalance()
 # Implementation of STACKING method
 
 ##############################################################################################################################################################
+
+print("Start bayes")
+model = SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 9, 1, dir + '/SVM/PCA + TF-IDF.txt')
+reading2 = Reader()
+print('@@@'+str(len(reading2.words_of_tweets)))
+reading2.words_of_tweets = []
+reading2.trainA = None
+reading2.readTrain2()
+SVM.svm_func2(model, reading2.train_A, reading2.words_of_tweets, reading2.extra_features, 9, 1, dir + '/SVM/PCA + TF-IDF.txt')
+print('DONE FILE 10')
+
 '''
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 9, 1, dir + '\\SVM\\PCA + TF-IDF.txt')
@@ -104,8 +130,8 @@ SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0
 print('DONE FILE 13')
 
 
-SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\SVM\\GloVe.txt')
-print('DONE FILE 14')
+#SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 6, dir + '\\SVM\\GloVe.txt')
+#print('DONE FILE 14')
 
 
 SVM.svm_func(reading.train_A, reading.words_of_tweets, reading.extra_features, 0, 5, dir + '\\SVM\\doc2vec.txt')
@@ -144,10 +170,15 @@ print('DONE FILE 21')
 
 ##############################################################################################################################################################
 
+
 '''
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\\Bayes\\Univariate Selection + TF-IDF.txt')
 print('DONE FILE 1')
-
+'''
+NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 1, dir + '\SVM\PCA + TF-IDF.txt')
+print('DONE FILE 1')
+'''
+'''
 NaiveBayes.Bayes(reading.train_A, reading.words_of_tweets, reading.extra_features, 7, 2, dir + '\\Bayes\\Univariate Selection + One-Hot.txt')
 print('DONE FILE 2')
 
@@ -393,3 +424,5 @@ VotingEnsembles.Voting_Ensembles(reading.train_A, reading.words_of_tweets, readi
 print('DONE FILE 21')
 '''
 
+
+'''

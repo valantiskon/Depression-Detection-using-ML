@@ -3,6 +3,8 @@ import numpy as np
 import emoji
 import re
 from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('vader_lexicon')
 import flair
 import os.path
 import pandas as pd
@@ -24,6 +26,7 @@ class TwitterData_ExtraFeatures:
         raw_text = [] # UNPROCESSED TEXT OF TWEETS
         tokenized_text = [] # TOKENIZED TEXT OF TWEETS
         for sentence in train_A['tweet']:
+
             raw_text.append(sentence)
             # Tokenize tweets
             tokenized_text.append(word_tokenize(sentence))
@@ -144,7 +147,7 @@ class TwitterData_ExtraFeatures:
 
 
         # 6 sentiment analysis of a tweet (4 FEATURES IN 1 PROCESS)
-     #   flair_sentiment = flair.models.TextClassifier.load('en-sentiment')
+        flair_sentiment = flair.models.TextClassifier.load('en-sentiment')
 
         vader_sentiment = SentimentIntensityAnalyzer()
         print(self.processed_data)
@@ -153,11 +156,12 @@ class TwitterData_ExtraFeatures:
         neutral_emot = []
         positive_emot = []
         compound_emot = []
+        flair_emot = []
         for tweet in raw_text:
-            #    s = flair.data.Sentence(tweet)
-            #     flair_sentiment.predict(s)
-            #      flair_total_sentiment = s.labels
-            #       print("flair: ", flair_total_sentiment)
+            s = flair.data.Sentence(tweet)
+            flair_sentiment.predict(s)
+            flair_total_sentiment = s.labels
+            print("flair: ", flair_total_sentiment)
 
             vader_total_sentiment = vader_sentiment.polarity_scores(tweet)
 
@@ -167,11 +171,13 @@ class TwitterData_ExtraFeatures:
             neutral_emot.append(vader_total_sentiment["neu"])
             positive_emot.append(vader_total_sentiment["pos"])
             compound_emot.append(vader_total_sentiment["compound"])
+            flair_emot.append(flair_total_sentiment)
 
         self.processed_data.append(negative_emot)
         self.processed_data.append(neutral_emot)
         self.processed_data.append(positive_emot)
         self.processed_data.append(compound_emot)
+        self.processed_data.append(flair_emot)
 
         for x in self.processed_data:
             print("features: ", x)
@@ -212,7 +218,7 @@ class TwitterData_ExtraFeatures:
 
         # 8 Count of words conveing sad feelings and symptoms of depression (percenage of number of depressive words divided by the average number of depressive words in all twees)
         dir = os.getcwd()  # Gets the current working directory
-        depr_lex = dir + '\\dataset\\train\\depression_lexicon.txt'
+        depr_lex = dir + '/dataset/train/depression_lexicon.txt'
 
         with open(depr_lex, "r", encoding="utf8") as fd:
             depr_lexicon = fd.read().splitlines()

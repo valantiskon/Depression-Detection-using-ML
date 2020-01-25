@@ -325,7 +325,6 @@ class Reader:
         # GloVe
         if encoding == 6:
             encoded_tweets = self.GloVe_enc(x_enc, train_test)
-
         # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -335,9 +334,13 @@ class Reader:
         # Feature Selection
 
         # Format the features from Feature Extraction
+        print('!!!!!!'+str(len(extra_features)))
         extra_features = zip(*extra_features)  # * in used to unzip the list, result is transposed rows with columns. Rows changed to number of tweets and columns changed to number of features
+        #print('!!!!!!'+str(len(extra_features)))
         extra_features = list(extra_features)
+        print('!!!!!!'+str(len(extra_features)))
         extra_features = np.array(extra_features)
+        print('!!!!!!'+str(len(extra_features)))
         extra_features = extra_features[dataset_index]
         print("features chosen shape: ", extra_features.shape)
 
@@ -705,7 +708,7 @@ class Reader:
 
         if train_test == 1:  # Train set
             # feature extraction
-            self.pca = PCA(n_components=100)
+            self.pca = PCA(n_components=14)
             features = self.pca.fit_transform(x)
 
         if train_test == 0:  # Test set
@@ -766,7 +769,47 @@ class Reader:
 
     def readTrain(self):
         # Read the training file
-        train_file_A = self.dir + '\\dataset\\train\\imbalanced_training.csv'
+
+        #train_file_A = self.dir + '\\dataset\\train\\tweets_combined.csv'
+        train_file_A = self.dir + '/dataset/Tweets_data.csv'
+        print("file readed")
+
+
+        self.train_A = pd.read_csv(train_file_A)
+        # Drop the first column of reading file
+        #self.train_A.drop(['Id', 'Score'], axis=1, inplace=True)
+        #self.train_A.drop(['tweet_id', 'author'], axis=1, inplace=True)
+
+
+        # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        # Pre-processing
+        self.pre_processing()
+
+
+    def switch(self):
+        file = self.dir + '/dataset/Tweets_data.csv'
+        tmp = pd.read_csv(file)
+        f = open("my_train.csv", "a")
+        col1 = tmp.get('tweet')
+        clo2 = tmp.get('label')
+        print(col1.length)
+        f.write("")
+        f.close()
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    def readTrain2(self):
+        # Read the training file
+
+  ##      train_file_A = self.dir + '\\dataset\\train\\general_tweets.csv'
+  ##        train_file_A = self.dir + '\\dataset\\train\\balanced_general_tweets.csv'
+  ##      train_file_A = self.dir + '\\dataset\\train\\POSITIVE_DEPRESSED_SCRAPED.csv'
+
+        #train_file_A = self.dir + '\\dataset\\train\\tweets_combined.csv'
+        train_file_A = self.dir + '/dataset/train/imbalanced_training.csv'
+        print("file readed")
 
         self.train_A = pd.read_csv(train_file_A)
         # Drop the first column of reading file
@@ -777,10 +820,6 @@ class Reader:
 
         # Pre-processing
         self.pre_processing()
-
-# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
     ##############################################################################################################################################################
 
     # Check if the dataset is imbalanced
@@ -789,7 +828,7 @@ class Reader:
 
 
     def checkImbalance(self):
-        # Count the percentage of depressive and non-depressive tweets
+        # Count the percentage of depressive and non-dFepressive tweets
         print(self.train_A['label'].value_counts())
         count_0, count_1 = self.train_A['label'].value_counts()
         print(count_1, count_0)
@@ -799,6 +838,7 @@ class Reader:
             (count_1 / counter_all) * 100) + '\n ----------------------------------------')
 
         # Plot the imbalance with two bars indicating each label
+
 #        color = ['blue', 'orange']
 #        self.train_A['label'].value_counts().plot(kind='bar', title='Count (label)', color=color)
 #        plt.show()
